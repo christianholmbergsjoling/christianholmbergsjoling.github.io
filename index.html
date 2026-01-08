@@ -10,37 +10,40 @@
 
 <body>
   <main class="container">
-    <header class="header">
-      <div class="title">
-        <h1>Christian Holmberg Sjöling</h1>
-        <p class="subtitle">PhD student · Luleå University of Technology</p>
+    <header class="hero">
+      <h1>Christian Holmberg Sjöling</h1>
+      <p class="subtitle">PhD student · Luleå University of Technology</p>
 
-        <nav class="nav">
-          <a href="#about">About</a>
-          <a href="#research">Research</a>
-          <a href="#publications">Publications</a>
-          <a href="#teaching">Teaching</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-
-      <img class="headshot" src="headshot.png" alt="Headshot of Christian Holmberg Sjöling" />
+      <nav class="nav">
+        <a href="#about" data-section="about">About</a>
+        <a href="#research" data-section="research">Research</a>
+        <a href="#publications" data-section="publications">Publications</a>
+        <a href="#teaching" data-section="teaching">Teaching</a>
+        <a href="#contact" data-section="contact">Contact</a>
+      </nav>
     </header>
 
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>
-        I work on X and Y, with a focus on Z.
-      </p>
-      <p class="links">
-        <a href="CV.pdf">CV</a>
-        <a href="#">Google Scholar</a>
-        <a href="#">GitHub</a>
-        <a href="#">LinkedIn</a>
-      </p>
+    <section id="about" class="section page">
+      <div class="about-grid">
+        <img class="headshot" src="headshot.png" alt="Headshot of Christian Holmberg Sjöling" />
+
+        <div>
+          <h2>About</h2>
+          <p>
+            I work on X and Y, with a focus on Z.
+          </p>
+
+          <p class="links">
+            <a href="CV.pdf">CV</a>
+            <a href="#">Google Scholar</a>
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section id="research" class="section">
+    <section id="research" class="section page">
       <h2>Research</h2>
       <ul class="list">
         <li><strong>Topic A:</strong> one sentence description.</li>
@@ -48,7 +51,7 @@
       </ul>
     </section>
 
-    <section id="publications" class="section">
+    <section id="publications" class="section page">
       <h2>Publications</h2>
       <ol class="pubs">
         <li>
@@ -58,14 +61,14 @@
       </ol>
     </section>
 
-    <section id="teaching" class="section">
+    <section id="teaching" class="section page">
       <h2>Teaching</h2>
       <ul class="list">
         <li>Course name — role — year</li>
       </ul>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section page">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:you@university.edu">you@university.edu</a></p>
       <p>City, Country</p>
@@ -77,6 +80,37 @@
   </main>
 
   <script>
+    const sections = Array.from(document.querySelectorAll(".page"));
+    const navLinks = Array.from(document.querySelectorAll(".nav a[data-section]"));
+
+    function showSection(id) {
+      const safeId = id || "about";
+      sections.forEach(s => s.classList.toggle("is-active", s.id === safeId));
+      navLinks.forEach(a => a.classList.toggle("is-active", a.dataset.section === safeId));
+      // keep hash in sync without jumping
+      if (location.hash !== `#${safeId}`) history.replaceState(null, "", `#${safeId}`);
+    }
+
+    function getHashSection() {
+      const h = (location.hash || "").replace("#", "").trim();
+      return h || "about";
+    }
+
+    // Initial view
+    showSection(getHashSection());
+
+    // Click navigation
+    navLinks.forEach(a => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        showSection(a.dataset.section);
+      });
+    });
+
+    // If user manually changes the hash (or uses back/forward)
+    window.addEventListener("hashchange", () => showSection(getHashSection()));
+
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
