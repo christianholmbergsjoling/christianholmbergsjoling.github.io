@@ -12,25 +12,21 @@
   <main class="container">
     <header class="hero">
       <h1>Christian Holmberg Sjöling</h1>
-      <p class="subtitle">PhD student · Luleå University of Technology</p>
 
       <nav class="nav">
         <a href="#about" data-section="about">About</a>
-        <a href="#research" data-section="research">Research</a>
         <a href="#publications" data-section="publications">Publications</a>
-        <a href="#teaching" data-section="teaching">Teaching</a>
-        <a href="#contact" data-section="contact">Contact</a>
+        <a href="#talks" data-section="talks">Talks</a>
+        <a href="#service" data-section="service">Service</a>
       </nav>
     </header>
 
     <section id="about" class="section page">
       <div class="about-grid">
-        <img class="headshot" src="headshot.png" alt="Headshot of Christian Holmberg Sjöling" />
-
         <div>
           <h2>About</h2>
           <p>
-            I work on and Y, with a focus on Z.
+            I work on X and Y, with a focus on Z.
           </p>
 
           <p class="links">
@@ -40,38 +36,38 @@
             <a href="#">LinkedIn</a>
           </p>
         </div>
-      </div>
-    </section>
 
-    <section id="research" class="section page">
-      <h2>Research</h2>
-      <ul class="list">
-        <li><strong>Topic A:</strong> one sentence description.</li>
-        <li><strong>Topic B:</strong> one sentence description.</li>
-      </ul>
+        <img
+          class="headshot"
+          src="headshot.png"
+          alt="Portrait of Christian Holmberg Sjöling"
+        />
+      </div>
     </section>
 
     <section id="publications" class="section page">
       <h2>Publications</h2>
       <ol class="pubs">
         <li>
-          <strong>Paper title.</strong> Christian Holmberg Sjöling, Coauthor. <em>Venue</em>, Year.
+          <strong>Paper title.</strong> Christian Holmberg Sjöling, Coauthor.
+          <em>Venue</em>, Year.
           <a href="#">PDF</a>
         </li>
       </ol>
     </section>
 
-    <section id="teaching" class="section page">
-      <h2>Teaching</h2>
+    <section id="talks" class="section page">
+      <h2>Talks</h2>
       <ul class="list">
-        <li>Course name — role — year</li>
+        <li>Talk title — venue, year</li>
       </ul>
     </section>
 
-    <section id="contact" class="section page">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:you@university.edu">you@university.edu</a></p>
-      <p>City, Country</p>
+    <section id="service" class="section page">
+      <h2>Service</h2>
+      <ul class="list">
+        <li>Reviewer — conference or journal</li>
+      </ul>
     </section>
 
     <footer class="footer">
@@ -84,33 +80,35 @@
     const navLinks = Array.from(document.querySelectorAll(".nav a[data-section]"));
 
     function showSection(id) {
-      const safeId = id || "about";
-      sections.forEach(s => s.classList.toggle("is-active", s.id === safeId));
-      navLinks.forEach(a => a.classList.toggle("is-active", a.dataset.section === safeId));
-      // keep hash in sync without jumping
-      if (location.hash !== `#${safeId}`) history.replaceState(null, "", `#${safeId}`);
+      const target = id || "about";
+      sections.forEach(s =>
+        s.classList.toggle("is-active", s.id === target)
+      );
+      navLinks.forEach(a =>
+        a.classList.toggle("is-active", a.dataset.section === target)
+      );
+      if (location.hash !== `#${target}`) {
+        history.replaceState(null, "", `#${target}`);
+      }
     }
 
-    function getHashSection() {
-      const h = (location.hash || "").replace("#", "").trim();
-      return h || "about";
+    function currentSection() {
+      return (location.hash || "").replace("#", "") || "about";
     }
 
-    // Initial view
-    showSection(getHashSection());
+    showSection(currentSection());
 
-    // Click navigation
     navLinks.forEach(a => {
-      a.addEventListener("click", (e) => {
+      a.addEventListener("click", e => {
         e.preventDefault();
         showSection(a.dataset.section);
       });
     });
 
-    // If user manually changes the hash (or uses back/forward)
-    window.addEventListener("hashchange", () => showSection(getHashSection()));
+    window.addEventListener("hashchange", () =>
+      showSection(currentSection())
+    );
 
-    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
