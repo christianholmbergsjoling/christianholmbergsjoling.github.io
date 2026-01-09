@@ -8,12 +8,9 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
@@ -25,41 +22,19 @@ body {
   padding: 56px 20px;
 }
 
-/* Header */
 .hero {
   text-align: center;
-  padding-bottom: 24px;
   border-bottom: 1px solid var(--line);
-}
-
-h1 {
-  margin: 0;
-  font-size: 2.2rem;
-  letter-spacing: -0.02em;
+  padding-bottom: 24px;
 }
 
 .nav {
   display: flex;
   gap: 18px;
-  flex-wrap: wrap;
   justify-content: center;
   margin-top: 18px;
 }
 
-.nav a {
-  font-size: 0.95rem;
-  text-decoration: none;
-  color: inherit;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-}
-
-.nav a:hover,
-.nav a.is-active {
-  border-bottom-color: var(--text);
-}
-
-/* Sections */
 .section {
   padding: 32px 0;
   border-bottom: 1px solid var(--line);
@@ -68,32 +43,24 @@ h1 {
 .page { display: none; }
 .page.is-active { display: block; }
 
-h2 {
-  margin: 0 0 12px;
-  font-size: 1.1rem;
-  letter-spacing: -0.01em;
-}
-
-/* About layout */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 180px;
   gap: 28px;
-  align-items: start;
 }
 
 .headshot {
   width: 180px;
   height: 180px;
   object-fit: cover;
-  border-radius: 4px; /* square, subtle rounding */
+  border-radius: 4px;
   border: 1px solid var(--line);
 }
 
 .links {
   display: flex;
-  gap: 16px;
   flex-wrap: wrap;
+  gap: 14px;
   margin-top: 10px;
 }
 
@@ -105,33 +72,27 @@ a {
 
 a:hover { border-bottom-color: var(--text); }
 
-.list {
-  padding-left: 18px;
-  margin: 0;
-}
-
-.pubs {
-  padding-left: 20px;
-  margin: 0;
-}
-
-.pubs li { margin-bottom: 12px; }
-
 .footer {
-  padding-top: 20px;
+  margin-top: 32px;
   color: var(--muted);
-  font-size: 0.95rem;
 }
 
-/* Mobile */
+/* =========================
+   MOBILE LAYOUT
+   ========================= */
 @media (max-width: 720px) {
+
   .about-grid {
     grid-template-columns: 1fr;
   }
 
-  .headshot {
-    width: 200px;
-    height: 200px;
-    margin-top: 12px;
+  /* Move image under heading */
+  .about-grid .headshot {
+    order: -1;
+    margin: 16px auto 20px;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
   }
+
 }
