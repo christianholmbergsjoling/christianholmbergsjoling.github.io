@@ -25,7 +25,7 @@ body {
   padding: 56px 20px;
 }
 
-/* NEW: centered header block */
+/* Header */
 .hero {
   text-align: center;
   padding-bottom: 24px;
@@ -34,43 +34,34 @@ body {
 
 h1 {
   margin: 0;
-  font-size: 2.15rem;
+  font-size: 2.2rem;
   letter-spacing: -0.02em;
-}
-
-.subtitle {
-  margin: 8px 0 0;
-  color: var(--muted);
 }
 
 .nav {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 .nav a {
   font-size: 0.95rem;
-  color: inherit;
   text-decoration: none;
+  color: inherit;
   border-bottom: 1px solid transparent;
   padding-bottom: 2px;
 }
 
-.nav a:hover {
-  border-bottom-color: var(--text);
-}
-
-/* NEW: active tab indicator */
+.nav a:hover,
 .nav a.is-active {
   border-bottom-color: var(--text);
 }
 
-/* Sections are now "pages": only one visible */
+/* Sections */
 .section {
-  padding: 28px 0;
+  padding: 32px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -83,27 +74,27 @@ h2 {
   letter-spacing: -0.01em;
 }
 
+/* About layout */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 28px;
+  align-items: start;
+}
+
+.headshot {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px; /* square, subtle rounding */
+  border: 1px solid var(--line);
+}
+
 .links {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
   margin-top: 10px;
-}
-
-/* NEW: about layout with larger headshot */
-.about-grid {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 22px;
-  align-items: start;
-}
-
-.headshot {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 999px;
-  border: 1px solid var(--line);
 }
 
 a {
@@ -136,12 +127,11 @@ a:hover { border-bottom-color: var(--text); }
 @media (max-width: 720px) {
   .about-grid {
     grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: left;
   }
 
   .headshot {
-    width: 180px;   /* slightly larger on mobile looks good */
-    height: 180px;
+    width: 200px;
+    height: 200px;
+    margin-top: 12px;
   }
 }
