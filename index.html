@@ -376,12 +376,18 @@
     const sections = Array.from(document.querySelectorAll(".page"));
     const navLinks = Array.from(document.querySelectorAll(".nav a[data-section]"));
 
-    function showSection(id) {
+    function showSection(id, { updateHash = true, scrollTop = true } = {}) {
       const target = id || "about";
+
       sections.forEach(s => s.classList.toggle("is-active", s.id === target));
       navLinks.forEach(a => a.classList.toggle("is-active", a.dataset.section === target));
-      if (location.hash !== `#${target}`) {
+
+      if (updateHash) {
         history.replaceState(null, "", `#${target}`);
+      }
+
+      if (scrollTop) {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       }
     }
 
@@ -389,16 +395,19 @@
       return (location.hash || "").replace("#", "") || "about";
     }
 
-    showSection(currentSection());
+    // Initial load: show section but force top of page
+    showSection(currentSection(), { updateHash: false, scrollTop: true });
 
     navLinks.forEach(a => {
       a.addEventListener("click", e => {
         e.preventDefault();
-        showSection(a.dataset.section);
+        showSection(a.dataset.section, { updateHash: true, scrollTop: true });
       });
     });
 
-    window.addEventListener("hashchange", () => showSection(currentSection()));
+    window.addEventListener("hashchange", () => {
+      showSection(currentSection(), { updateHash: false, scrollTop: true });
+    });
 
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
