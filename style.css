@@ -57,6 +57,9 @@ body {
   border: 1px solid var(--line);
 }
 
+/* The header photo is only used on desktop */
+.headshot-header { display: none; }
+
 .links {
   display: flex;
   flex-wrap: wrap;
@@ -78,7 +81,40 @@ a:hover { border-bottom-color: var(--text); }
 }
 
 /* =========================
-   MOBILE LAYOUT
+   DESKTOP LAYOUT
+   Name + navigation left-aligned, photo in the same row,
+   About text on its own below.
+   ========================= */
+@media (min-width: 721px) {
+
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    text-align: left;
+  }
+
+  .hero h1 { margin: 0; }
+
+  .nav { justify-content: flex-start; }
+
+  .headshot-header {
+    display: block;
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+  }
+
+  /* Photo lives in the header on desktop, so hide the About copy */
+  .headshot-about { display: none; }
+
+  .about-grid { grid-template-columns: 1fr; }
+
+}
+
+/* =========================
+   MOBILE LAYOUT (unchanged)
    ========================= */
 @media (max-width: 720px) {
 
