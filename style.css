@@ -1,8 +1,8 @@
 :root {
-  --text: #111;
-  --muted: #666;
-  --line: #eaeaea;
-  --bg: #ffffff;
+  --text: #1f1c18;
+  --muted: #6b655c;
+  --line: #e2dccf;
+  --bg: #f6f2ea;
   --max-width: 860px;
 }
 
