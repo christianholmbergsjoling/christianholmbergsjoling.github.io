@@ -11,14 +11,23 @@
 <body>
   <main class="container">
     <header class="hero">
-      <h1>Christian Holmberg Sjöling</h1>
+      <div class="hero-text">
+        <h1>Christian Holmberg Sjöling</h1>
 
-      <nav class="nav">
-        <a href="#about" data-section="about">About</a>
-        <a href="#publications" data-section="publications">Publications</a>
-        <a href="#talks" data-section="talks">Talks</a>
-        <a href="#service" data-section="service">Service</a>
-      </nav>
+        <nav class="nav">
+          <a href="#about" data-section="about">About</a>
+          <a href="#publications" data-section="publications">Publications</a>
+          <a href="#talks" data-section="talks">Talks</a>
+          <a href="#service" data-section="service">Service</a>
+        </nav>
+      </div>
+
+      <!-- Desktop only: photo sits in the header row (hidden on mobile) -->
+      <img
+        class="headshot headshot-header"
+        src="headshot.png"
+        alt="Portrait of Christian Holmberg Sjöling"
+      />
     </header>
 
     <!-- ABOUT -->
@@ -101,8 +110,9 @@
           </p>
         </div>
 
+        <!-- Mobile only: photo sits above the About text (hidden on desktop) -->
         <img
-          class="headshot"
+          class="headshot headshot-about"
           src="headshot.png"
           alt="Portrait of Christian Holmberg Sjöling"
         />
