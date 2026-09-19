@@ -76,6 +76,12 @@ a {
 
 a:hover { border-bottom-color: var(--text); }
 
+/* Entry counter shown next to nav links */
+.nav-count {
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
 .footer {
   margin-top: 32px;
   color: var(--muted);
