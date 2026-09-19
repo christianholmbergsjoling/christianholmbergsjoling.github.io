@@ -76,6 +76,15 @@ a {
 
 a:hover { border-bottom-color: var(--text); }
 
+/* Photo collage on the Personal page */
+.collage {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+  border-radius: 10px;
+}
+
 /* Entry counter shown next to nav links */
 .nav-count {
   color: var(--muted);
