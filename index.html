@@ -16,9 +16,9 @@
 
         <nav class="nav">
           <a href="#about" data-section="about">About</a>
-          <a href="#publications" data-section="publications">Publications</a>
-          <a href="#talks" data-section="talks">Talks</a>
-          <a href="#miscellaneous" data-section="miscellaneous">Miscellaneous</a>
+          <a href="#publications" data-section="publications" data-count>Publications</a>
+          <a href="#talks" data-section="talks" data-count>Talks</a>
+          <a href="#miscellaneous" data-section="miscellaneous" data-count>Miscellaneous</a>
           <a href="#personal" data-section="personal">Personal</a>
         </nav>
       </div>
@@ -38,9 +38,9 @@
           <h2>About</h2>
 
           <p>
-            I am a computational and quantitative linguist set to defend my doctoral
-            dissertation <em>“Complexity, Variation, and Correctness”: Computational and
-            Quantitative Linguistic Approaches to High-Stakes EFL Writing Assessment</em>
+            I am a corpus linguist and methodologist set to defend my doctoral
+            dissertation <em>“Complexity, Variation, and Correctness”: A Corpus-Linguistic
+            Approach to High-Stakes EFL Writing Assessment</em>
             on Friday 11 December, with Professor Phil Durrant (University of Exeter)
             as the opponent.
           </p>
@@ -166,7 +166,7 @@
   <ol class="pubs">
     <li>
       <strong>Holmberg Sjöling, C.</strong>
-      <em>“Complexity, Variation, and Correctness”: Computational and Quantitative Linguistic Approaches to High-Stakes EFL Writing Assessment</em>.
+      <em>“Complexity, Variation, and Correctness”: A Corpus-Linguistic Approach to High-Stakes EFL Writing Assessment</em>.
     </li>
   </ol>
 
@@ -433,6 +433,19 @@
   <script>
     const sections = Array.from(document.querySelectorAll(".page"));
     const navLinks = Array.from(document.querySelectorAll(".nav a[data-section]"));
+
+    // Show the number of entries (list items) next to each nav link marked with
+    // data-count. Updates automatically whenever entries are added or removed.
+    navLinks.forEach(a => {
+      if (!a.hasAttribute("data-count")) return;
+      const section = document.getElementById(a.dataset.section);
+      if (!section) return;
+      const count = section.querySelectorAll("li").length;
+      const badge = document.createElement("span");
+      badge.className = "nav-count";
+      badge.textContent = `(${count})`;
+      a.append(" ", badge);
+    });
 
     function showSection(id, { updateHash = true, scrollTop = true } = {}) {
       const target = id || "about";
